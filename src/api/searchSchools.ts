@@ -47,9 +47,10 @@ export async function searchSchools(params: {
         console.log(queryString);
 
         const { data } = await apiRequest.get(`/school/search?${queryString}`);
-        console.log(data);
+        // console.log(data);
 
         return data;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.log(error);
 
