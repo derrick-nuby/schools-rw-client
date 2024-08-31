@@ -4,6 +4,7 @@ import MainUserLayout from './layout/MainUserLayout';
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
+import SchoolDetails from './pages/SchoolDetails';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,11 @@ function App() {
           <Route
             path="/search"
             element={<SearchPage />}
+          />
+
+          <Route
+            path="/school/:id"
+            element={<SchoolDetails />}
           />
         </Route >
       </>
