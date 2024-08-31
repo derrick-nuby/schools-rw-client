@@ -19,8 +19,8 @@ export default {
         inter: ["Inter", "sans-serif"],
       },
       backgroundImage: {
-        'hero-img': "url('/public/hero.jpg')",
-        'hero-img2': "url('/public/hero.png')",
+        'hero-img': "url('/hero.jpg')",
+        'hero-img2': "url('/hero.png')",
       }
     },
   },

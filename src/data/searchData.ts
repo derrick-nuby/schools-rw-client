@@ -39,8 +39,7 @@ export const schoolStatus = [
 
 export const schoolType = [
     { id: '1', displayValue: 'DAY', value: 'DAY' },
-    { id: '2', displayValue: 'BOARDING', value: 'BOARDING' },
-    { id: '3', displayValue: 'PRIVATE', value: 'PRIVATE' }
+    { id: '2', displayValue: 'BOARDING', value: 'BOARDING' }
 ];
 
 export const combinations = [
