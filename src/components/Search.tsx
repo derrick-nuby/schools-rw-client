@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { searchSchools } from '../api/searchSchools';
 
 const CLASSES = {
-    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3]',
+    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0',
 };
 
 const Search: React.FC = () => {
@@ -42,6 +42,9 @@ const Search: React.FC = () => {
 
     return (
         <div>
+            <div className="text-xl md:text-3xl text-accent-blue text-center mt-9">
+                Search
+            </div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-3 md:gap-0 md:flex-row justify-evenly mt-8'>
                 <input
                     type="search"
