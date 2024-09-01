@@ -52,7 +52,7 @@ const SearchPageComponent: React.FC = () => {
     return (
         <div>
             <div className="text-xl md:text-3xl text-accent-blue text-center mt-9">
-                Search
+                Please Input Your Details For Search
             </div>
             <form onSubmit={handleSubmit} className='flex flex-col gap-3 md:gap-0 md:flex-row justify-evenly mt-8'>
                 <input

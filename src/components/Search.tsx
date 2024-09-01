@@ -3,6 +3,7 @@ import DropDownCheck from './DropDownCheck';
 import { districts, schoolStatus, schoolType, combinations } from '../data/searchData';
 import { useMutation } from '@tanstack/react-query';
 import { searchSchools } from '../api/searchSchools';
+import { Link } from 'react-router-dom';
 
 const CLASSES = {
     button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0',
@@ -82,7 +83,9 @@ const Search: React.FC = () => {
                     placeholder="Select Combination"
                 />
 
-                <input type="submit" value="Search" className={CLASSES.button} />
+                <Link to={'/search'}>
+                    <input type="submit" value="Search" className={CLASSES.button} />
+                </Link>
             </form>
         </div>
     );
