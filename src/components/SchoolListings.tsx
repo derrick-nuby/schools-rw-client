@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { fetchSchools } from '../api/fetchSchools';
 import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton } from './styles';
+import { ISchool } from '../types/School';
 
 const SchoolListings: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +14,6 @@ const SchoolListings: React.FC = () => {
     const { data, isLoading, error } = useQuery({
         queryKey: ['schools', currentPage],
         queryFn: () => fetchSchools(currentPage, limit),
-        keepPreviousData: true
     });
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const SchoolListings: React.FC = () => {
     return (
         <section ref={sectionRef} className='my-28 mx-1 md:mx-9'>
             <div className='grid grid-rows-1 md:grid-cols-3 gap-9 justify-center'>
-                {schools.map((school) => (
+                {schools.map((school: ISchool) => (
                     <div className={`${schoolContainer}`} key={school._id}>
                         <p className={schoolTitle}>
                             <Link to={`/school/${school._id}`}>{school.school_name}</Link>

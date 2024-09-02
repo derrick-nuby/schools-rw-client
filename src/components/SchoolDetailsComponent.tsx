@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ISchool } from '../types/school';
-import { ICombination } from '../types/combination';
+import { ISchool } from '../types/School';
+import { ICombination } from '../types/Combination';
 import { fetchSchoolById } from '../api/fetchSchoolById';
 
 interface SchoolResponse {
@@ -15,12 +15,12 @@ const SchoolDetailsComponent: React.FC = () => {
 
     const {
         data,
-        error,
+        // error,
         isLoading,
         isError
     } = useQuery<SchoolResponse, Error>({
         queryKey: ['school', id],
-        queryFn: () => fetchSchoolById(id),
+        queryFn: () => fetchSchoolById(id as string),
         enabled: !!id,
         retry: 2,
     });

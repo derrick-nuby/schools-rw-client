@@ -1,6 +1,6 @@
-import { ICombination } from "./combination";
+import { ICombination } from "./Combination";
 export interface ISchool {
-    _id: string; // Use string for ObjectId
+    _id: string;
     school_code: string;
     school_name: string;
     school_status: string;

@@ -6,6 +6,7 @@ import { searchSchools } from '../api/searchSchools';
 import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton } from './styles';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { Link } from 'react-router-dom';
+import { ISchool } from '../types/School';
 
 const CLASSES = {
     button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0 cursor-pointer',
@@ -25,7 +26,6 @@ const SearchPageComponent: React.FC = () => {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ['searchResults', { searchQuery, selectedDistricts, selectedSchoolstatus, selectedSchooltype, selectedCombinations, page }],
         queryFn: () => searchSchools({ query: searchQuery, district: selectedDistricts, school_status: selectedSchoolstatus, school_type: selectedSchooltype, combination_ids: selectedCombinations, page, limit }),
-        keepPreviousData: true,
         enabled: isSearchTriggered
     });
 
@@ -107,7 +107,7 @@ const SearchPageComponent: React.FC = () => {
                     ) : (
                         <>
                             <div className='grid grid-rows-1 md:grid-cols-3 gap-9 justify-center'>
-                                {data?.schools.map((school) => (
+                                {data?.schools.map((school: ISchool) => (
                                     <div className={`${schoolContainer}`} key={school._id}>
                                         <p className={schoolTitle}>
                                             <Link to={`/school/${school._id}`}>{school.school_name}</Link>
