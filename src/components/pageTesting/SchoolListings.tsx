@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useMutation } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { searchSchools } from '../../api/searchSchools';
@@ -19,32 +19,29 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
         data,
         error,
         isError,
-        isPending,
-        mutate
-    } = useMutation({
-        mutationFn: () => searchSchools({ ...searchCriteria, page: currentPage }),
-        onSuccess: (data) => {
-            console.log('Search Results:', data);
-        },
-        onError: (error) => {
-            console.error('Search Error:', error);
-        }
+        isLoading,
+    } = useQuery({
+        queryKey: ['searchSchools', searchCriteria, currentPage],
+        queryFn: () => searchSchools({ ...searchCriteria, page: currentPage }),
     });
 
     useEffect(() => {
-        mutate();
         if (sectionRef.current) {
             sectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [currentPage, mutate, searchCriteria]);
+    }, [currentPage]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchCriteria]);
 
     const handlePageChange = (newPage: number) => {
-        if (newPage > 0 && newPage <= data?.totalPages) {
+        if (newPage > 0 && newPage <= data?.pagination?.totalPages) {
             setCurrentPage(newPage);
         }
     };
 
-    if (isPending) {
+    if (isLoading) {
         return (
             <div className="flex justify-center items-center min-h-[80vh]">
                 <SyncLoader color="#059377" size={25} />
@@ -61,9 +58,6 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
     }
 
     const schools = data?.schools || [];
-
-    console.log(data);
-
 
     return (
         <section ref={sectionRef} className='my-28 mx-1 md:mx-9'>
@@ -110,10 +104,10 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
                 >
                     Previous
                 </button>
-                <span className="mx-4 pt-2">Page {currentPage} of {data.pagination?.totalPages}</span>
+                <span className="mx-4 pt-2">Page {currentPage} of {data?.pagination?.totalPages}</span>
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === data.pagination?.totalPages}
+                    disabled={currentPage === data?.pagination?.totalPages}
                     className={navButton}
                 >
                     Next

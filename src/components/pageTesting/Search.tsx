@@ -8,7 +8,7 @@ interface SearchProps {
 }
 
 const CLASSES = {
-    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0',
+    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0 cursor-pointer',
 };
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
@@ -25,7 +25,8 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             district: selectedDistricts,
             school_status: selectedSchoolstatus,
             school_type: selectedSchooltype,
-            combination_ids: selectedCombinations
+            combination_ids: selectedCombinations,
+            page: 1,
         });
     };
 
