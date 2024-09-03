@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import DropDownCheck from './DropDownCheck';
-import { districts, schoolStatus, schoolType, combinations } from '../data/searchData';
-import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
+import DropDownCheck from '../DropDownCheck';
+import { districts, schoolStatus, schoolType, combinations } from '../../data/searchData';
+import { SearchSchoolsParams } from '../../types/SearchSchoolsParams';
 
 interface SearchProps {
     onSearch: (criteria: SearchSchoolsParams) => void;
@@ -35,7 +35,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             <div className="text-xl md:text-3xl text-accent-blue text-center mt-9">
                 Search
             </div>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-3 md:gap-4 md:flex-row justify-evenly mt-8 mx-2 text-sm md:text-xs'>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-3 md:gap-0 md:flex-row justify-evenly mt-8 mx-2'>
                 <input
                     type="search"
                     value={searchQuery}

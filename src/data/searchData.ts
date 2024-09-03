@@ -44,6 +44,12 @@ export const schoolType = [
 
 export const combinations = [
     {
+        "id": "0",
+        "value": "66cf5e405094aed9c3947f1f",
+        "displayValue": "O-Level",
+        "abbreviation": "OL"
+    },
+    {
         "id": "1",
         "value": "66cf589e5094aed9c3947ee6",
         "displayValue": "AGR - Agriculture",
@@ -289,10 +295,4 @@ export const combinations = [
         "displayValue": "SSE - Social Studies Education",
         "abbreviation": "SSE"
     },
-    {
-        "id": "42",
-        "value": "66cf5e405094aed9c3947f1f",
-        "displayValue": "OL - O-Level",
-        "abbreviation": "OL"
-    }
 ];

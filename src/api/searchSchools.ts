@@ -1,16 +1,12 @@
 import apiRequest from '../utils/apiRequest';
+import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 
-export async function searchSchools(params: {
-    query?: string;
-    district?: string[];
-    school_status?: string[];
-    school_type?: string[];
-    combination_ids?: string[];
-    limit?: number;
-    page?: number;
-}) {
+export async function searchSchools(params: SearchSchoolsParams) {
     try {
-        const queryParams = [];
+        const queryParams: string[] = [];
+
+        console.log(params);
+
 
         if (params.query) {
             queryParams.push(`query=${encodeURIComponent(params.query)}`);
@@ -22,6 +18,7 @@ export async function searchSchools(params: {
             queryParams.push(`page=${params.page}`);
         }
         if (params.district?.length) {
+            console.log(params.district);
             params.district.forEach(district => {
                 queryParams.push(`district=${encodeURIComponent(district)}`);
             });
@@ -44,10 +41,7 @@ export async function searchSchools(params: {
 
         const queryString = queryParams.join('&');
 
-        console.log(queryString);
-
         const { data } = await apiRequest.get(`/school/search?${queryString}`);
-        // console.log(data);
 
         return data;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchPageComponent from '../components/SearchPageComponent';
+import SearchResultsPage from '../components/SearchResultsPage';
 
 const SearchPage: React.FC = () => {
     return (
-        <div>
-            <SearchPageComponent />
-        </div>
+        <>
+            <SearchResultsPage />
+        </>
     );
 };
 

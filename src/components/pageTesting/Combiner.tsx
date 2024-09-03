@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import HeroSection from './HeroSection';
+import Search from './Search';
 import SchoolListings from './SchoolListings';
-import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
+import { SearchSchoolsParams } from '../../types/SearchSchoolsParams';
 
-const Home: React.FC = () => {
+const Combiner: React.FC = () => {
     const [searchCriteria, setSearchCriteria] = useState<SearchSchoolsParams>({
         query: '',
         district: [],
@@ -18,10 +18,10 @@ const Home: React.FC = () => {
 
     return (
         <div>
-            <HeroSection searchCriteria={searchCriteria} onSearch={handleSearch} />
+            <Search onSearch={handleSearch} />
             <SchoolListings searchCriteria={searchCriteria} />
         </div>
     );
 };
 
-export default Home;
+export default Combiner;
