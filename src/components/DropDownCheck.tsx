@@ -41,6 +41,14 @@ const DropDownCheck: React.FC<DropDownCheckProps> = ({
         };
     }, []);
 
+    const formatSelectedItems = () => {
+        const selectedDisplayValues = items.filter(item => selectedItems.includes(item.value)).map(item => item.displayValue);
+        if (selectedDisplayValues.length > 2) {
+            return `${selectedDisplayValues.slice(0, 2).join(', ')}...`;
+        }
+        return selectedDisplayValues.join(', ');
+    };
+
     return (
         <div className="relative" ref={dropdownRef}>
             <button
@@ -52,7 +60,7 @@ const DropDownCheck: React.FC<DropDownCheckProps> = ({
                 className="input-global w-full text-left flex justify-between items-center"
             >
                 {selectedItems.length > 0
-                    ? items.filter(item => selectedItems.includes(item.value)).map(item => item.displayValue).join(', ')
+                    ? formatSelectedItems()
                     : placeholder || 'Select items'}
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
