@@ -23,6 +23,7 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
     } = useQuery({
         queryKey: ['searchSchools', searchCriteria, currentPage],
         queryFn: () => searchSchools({ ...searchCriteria, page: currentPage }),
+        retry: 3
     });
 
     useEffect(() => {
