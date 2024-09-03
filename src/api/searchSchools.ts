@@ -37,8 +37,6 @@ export async function searchSchools(params: SearchSchoolsParams) {
 
         const queryString = queryParams.join('&');
 
-        console.log(queryString);
-
         const { data } = await apiRequest.get(`/school/search?${queryString}`);
 
         return data;
