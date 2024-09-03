@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ISchool } from '../types/School.ts';
-import { ICombination } from '../types/Combination.ts';
+import { ISchool } from '../types/School';
+import { ICombination } from '../types/Combination';
 import { fetchSchoolById } from '../api/fetchSchoolById';
 
 interface SchoolResponse {
