@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { searchSchools } from '../api/searchSchools';
-import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton } from './styles';
+import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton, statusSpan } from './styles';
 import { ISchool } from '../types/School';
 import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 
@@ -61,7 +61,7 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
     const schools = data?.schools || [];
 
     return (
-        <section ref={sectionRef} className='my-28 mx-1 md:mx-9'>
+        <section ref={sectionRef} className='my-28 mx-4 md:mx-9'>
             <div className='grid grid-rows-1 md:grid-cols-3 gap-9 justify-center'>
                 {schools.map((school: ISchool) => (
                     <div className={`${schoolContainer}`} key={school._id}>
@@ -75,8 +75,8 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
                             </span>
                         </p>
                         <p>
-                            <span className={`${identifierSpan}`}>Levels:</span>
-                            <span>
+                            <span className={`${identifierSpan}`}>Combinations:</span>
+                            <span className='break-all'>
                                 {school.combination_ids.map((combination, index: number) => (
                                     <span
                                         className={`${itemSpan}`}
@@ -86,6 +86,14 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
                                     </span>
                                 ))}
                             </span>
+                        </p>
+                        <p>
+                            <span className={`${identifierSpan}`}>Status:</span>
+                            <span className={`${statusSpan}`}>{school.school_status}</span>
+                        </p>
+                        <p>
+                            <span className={`${identifierSpan}`}>Type:</span>
+                            <span className={`${districtSpan}`}>{school.school_type}</span>
                         </p>
                         <div className={`flex flex-col items-center`} >
                             <Link to={`/school/${school._id}`}>

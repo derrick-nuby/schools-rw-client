@@ -75,7 +75,7 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
                             </span>
                         </p>
                         <p>
-                            <span className={`${identifierSpan}`}>Levels:</span>
+                            <span className={`${identifierSpan}`}>Combinations:</span>
                             <span>
                                 {school.combination_ids.map((combination, index: number) => (
                                     <span
