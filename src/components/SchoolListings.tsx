@@ -2,29 +2,42 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
-import { fetchSchools } from '../api/fetchSchools';
+import { searchSchools } from '../api/searchSchools';
 import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton } from './styles';
 import { ISchool } from '../types/School';
+import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 
-const SchoolListings: React.FC = () => {
+interface SchoolListingsProps {
+    searchCriteria: SearchSchoolsParams;
+}
+
+const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const limit = 12;
     const sectionRef = useRef<HTMLDivElement>(null);
 
-    const { data, isLoading, error } = useQuery({
-        queryKey: ['schools', currentPage],
-        queryFn: () => fetchSchools(currentPage, limit),
+    const {
+        data,
+        error,
+        isError,
+        isLoading,
+    } = useQuery({
+        queryKey: ['searchSchools', searchCriteria, currentPage],
+        queryFn: () => searchSchools({ ...searchCriteria, page: currentPage }),
+        retry: 3
     });
 
     useEffect(() => {
-        // Scroll to the specific section when the page changes
         if (sectionRef.current) {
             sectionRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     }, [currentPage]);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchCriteria]);
+
     const handlePageChange = (newPage: number) => {
-        if (newPage > 0 && newPage <= data?.totalPages) {
+        if (newPage > 0 && newPage <= data?.pagination?.totalPages) {
             setCurrentPage(newPage);
         }
     };
@@ -37,7 +50,7 @@ const SchoolListings: React.FC = () => {
         );
     }
 
-    if (error) {
+    if (isError) {
         return (
             <div className="flex justify-center items-center min-h-[80vh] text-red-600">
                 {error instanceof Error ? error.message : 'An error occurred.'}
@@ -92,10 +105,10 @@ const SchoolListings: React.FC = () => {
                 >
                     Previous
                 </button>
-                <span className="mx-4 pt-2">Page {currentPage} of {data?.totalPages}</span>
+                <span className="mx-4 pt-2">Page {currentPage} of {data?.pagination?.totalPages}</span>
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === data?.totalPages}
+                    disabled={currentPage === data?.pagination?.totalPages}
                     className={navButton}
                 >
                     Next

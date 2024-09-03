@@ -1,43 +1,33 @@
 import React, { useState } from 'react';
 import DropDownCheck from './DropDownCheck';
 import { districts, schoolStatus, schoolType, combinations } from '../data/searchData';
-import { useMutation } from '@tanstack/react-query';
-import { searchSchools } from '../api/searchSchools';
+import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
+
+interface SearchProps {
+    onSearch: (criteria: SearchSchoolsParams) => void;
+}
 
 const CLASSES = {
-    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0',
+    button: 'px-7 py-3 rounded-lg font-poppins text-white bg-accent-blue hover:bg-[#1A4CA3] mb-14 md:mb-0 cursor-pointer',
 };
 
-const Search: React.FC = () => {
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedDistricts, setSelectedDistricts] = useState<string[]>([]);
     const [selectedSchoolstatus, setSelectedSchoolstatus] = useState<string[]>([]);
     const [selectedSchooltype, setSelectedSchooltype] = useState<string[]>([]);
     const [selectedCombinations, setSelectedCombinations] = useState<string[]>([]);
 
-
-
-    const mutation = useMutation({
-        mutationFn: () => searchSchools({ query: searchQuery, district: selectedDistricts, school_status: selectedSchoolstatus, school_type: selectedSchooltype, combination_ids: selectedCombinations }),
-        onSuccess: (data) => {
-            console.log('Search Results:', data);
-        },
-        onError: (error) => {
-            console.error('Search Error:', error);
-        }
-    });
-
-
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log({
-            search: searchQuery,
-            districts: selectedDistricts,
-            schoolStatus: selectedSchoolstatus,
-            schoolType: selectedSchooltype,
-            combinations: selectedCombinations
+        onSearch({
+            query: searchQuery,
+            district: selectedDistricts,
+            school_status: selectedSchoolstatus,
+            school_type: selectedSchooltype,
+            combination_ids: selectedCombinations,
+            page: 1,
         });
-        mutation.mutate();
     };
 
     return (

@@ -1,7 +1,13 @@
 import React from 'react';
 import Search from './Search';
+import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+    searchCriteria: SearchSchoolsParams;
+    onSearch: (criteria: SearchSchoolsParams) => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
     return (
         <section>
             <div className="h-[100vh] bg-hero-img bg-cover bg-center bg-no-repeat flex justify-center">
@@ -11,9 +17,11 @@ const HeroSection: React.FC = () => {
                         <div className="text-3xl md:text-7xl text-accent-blue mt-3 md:mt-7">
                             amashuri.rw
                         </div>
-                        <p className='pt-2 md:pt-5 md:text-xl text-center'>The Ultimate Secondary School Finder in Rwanda – Effortlessly Search by Combination, District, Public or Private, and More. <br className="hidden md:block" /> Access Comprehensive School Details, Contact Information, Apply and Secure Your Child's Future Today!</p>
+                        <p className='pt-2 md:pt-5 md:text-xl text-center'>
+                            The Ultimate Secondary School Finder in Rwanda – Effortlessly Search by Combination, District, Public or Private, and More. <br className="hidden md:block" /> Access Comprehensive School Details, Contact Information, Apply and Secure Your Child's Future Today!
+                        </p>
                     </div>
-                    <Search />
+                    <Search onSearch={onSearch} />
                 </div>
             </div>
         </section>
