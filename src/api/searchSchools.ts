@@ -5,6 +5,9 @@ export async function searchSchools(params: SearchSchoolsParams) {
     try {
         const queryParams: string[] = [];
 
+        console.log(params);
+
+
         if (params.query) {
             queryParams.push(`query=${encodeURIComponent(params.query)}`);
         }
@@ -15,6 +18,7 @@ export async function searchSchools(params: SearchSchoolsParams) {
             queryParams.push(`page=${params.page}`);
         }
         if (params.district?.length) {
+            console.log(params.district);
             params.district.forEach(district => {
                 queryParams.push(`district=${encodeURIComponent(district)}`);
             });
