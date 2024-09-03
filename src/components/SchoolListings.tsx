@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SyncLoader from 'react-spinners/SyncLoader';
 import { searchSchools } from '../api/searchSchools';
 import { schoolContainer, schoolTitle, identifierSpan, districtSpan, colors, itemSpan, button, navButton, statusSpan } from './styles';
-import { ISchool } from '../types/School.ts';
+import { ISchool } from '../types/School';
 import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 
 interface SchoolListingsProps {
