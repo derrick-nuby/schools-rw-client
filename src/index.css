@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,7 @@
 body {
   @apply font-inter;
   font-weight: 500;
-  background-color: #f5f5ff;
+  background-color: #F5F5FF;
 }
 
 * {
@@ -25,6 +27,7 @@ body {
 .label-global {
   @apply text-lg block;
 }
+
 
 textarea {
   @apply resize-none rounded-lg border px-4 py-2;
