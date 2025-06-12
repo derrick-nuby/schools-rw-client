@@ -15,6 +15,7 @@ import {
   statusSpan,
 } from './styles';
 import { ISchool } from '../types/School';
+import { ICombination } from '../types/Combination';
 
 const SearchResultsPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -103,7 +104,7 @@ const SearchResultsPage: React.FC = () => {
             <p>
               <span className={`${identifierSpan}`}>Combinations:</span>
               <span className="break-all">
-                {school.combination_ids.map((combination, index: number) => (
+                {school.combination_ids.map((combination: ICombination, index: number) => (
                   <span
                     className={`${itemSpan}`}
                     style={{ backgroundColor: colors[index % colors.length] }}

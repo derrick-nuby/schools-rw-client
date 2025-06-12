@@ -14,6 +14,7 @@ import {
   navButton,
 } from '../styles';
 import { ISchool } from '../../types/School';
+import { ICombination } from '../../types/Combination';
 import { SearchSchoolsParams } from '../../types/SearchSchoolsParams';
 
 interface SchoolListingsProps {
@@ -79,7 +80,7 @@ const SchoolListings: React.FC<SchoolListingsProps> = ({ searchCriteria }) => {
             <p>
               <span className={`${identifierSpan}`}>Combinations:</span>
               <span>
-                {school.combination_ids.map((combination, index: number) => (
+                {school.combination_ids.map((combination: ICombination, index: number) => (
                   <span
                     className={`${itemSpan}`}
                     style={{ backgroundColor: colors[index % colors.length] }}
