@@ -27,4 +27,5 @@ dist-ssr
 # my ow files
 draft/
 .env
+coverage
 

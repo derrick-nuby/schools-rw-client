@@ -1,26 +1,31 @@
-const schoolContainer = 'bg-[#5fa898] px-3 py-5 rounded-lg md:w-80%';
-const schoolTitle = 'text-3xl font-bold text-white mt-2 mb-5';
-const identifierSpan = 'text-[20px] mr-2';
-const districtSpan = 'mb-9 text-white mr-1 px-[4px] py-[2px] rounded-md cursor-pointer bg-[#093b30]';
-const statusSpan = 'mb-9 text-white mr-1 px-[4px] py-[2px] rounded-md cursor-pointer bg-[#46745d]';
+const schoolContainer =
+  'bg-white border border-gray-200 shadow-md p-6 rounded-lg flex flex-col';
+const schoolTitle = 'text-xl font-semibold text-accent-blue mb-4';
+const identifierSpan = 'font-semibold mr-1';
+const districtSpan =
+  'mb-4 text-white mr-1 px-2 py-1 rounded bg-accent-blue inline-block';
+const statusSpan =
+  'mb-4 text-white mr-1 px-2 py-1 rounded bg-green-700 inline-block';
 const colors = ['#7E19FF', '#1B192D', '#9fdf0a', '#df0ad4', '#df580a'];
 const sections = ['MPC', 'PCB', 'BCG', 'MCE', 'HEG', 'MPG'];
 const levels = ['O-LEVEL', 'TTC', 'GE/REB'];
-const itemSpan = 'mb-9 text-white mr-1 px-[4px] py-[2px] rounded-md cursor-pointer';
-const button = 'px-4 py-2 rounded-lg text-white bg-[#1B192D] hover:bg-[#7E19FF] mt-9';
-const navButton = 'px-4 py-2 rounded-lg text-white bg-[#1B192D] hover:bg-[#7E19FF]';
-
+const itemSpan =
+  'mb-4 text-white mr-1 px-2 py-1 rounded bg-accent-purple inline-block text-sm';
+const button =
+  'px-4 py-2 rounded-lg text-white bg-accent-blue hover:bg-accent-purple mt-4';
+const navButton =
+  'px-4 py-2 mx-2 rounded-lg text-white bg-accent-blue hover:bg-accent-purple';
 
 export {
-    schoolContainer,
-    schoolTitle,
-    identifierSpan,
-    districtSpan,
-    colors,
-    sections,
-    levels,
-    itemSpan,
-    button,
-    navButton,
-    statusSpan,
+  schoolContainer,
+  schoolTitle,
+  identifierSpan,
+  districtSpan,
+  colors,
+  sections,
+  levels,
+  itemSpan,
+  button,
+  navButton,
+  statusSpan,
 };
