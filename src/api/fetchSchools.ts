@@ -1,5 +1,6 @@
 import apiRequest from '../utils/apiRequest';
 import { handleApiError } from '../utils/handleApiError';
+import { ApiError } from '../types/ApiError';
 
 export async function fetchSchools(page: number, limit: number) {
   try {
@@ -7,7 +8,7 @@ export async function fetchSchools(page: number, limit: number) {
       params: { page, limit },
     });
     return data;
-  } catch (error: any) {
-    handleApiError(error, 'No schools found; please search again');
+  } catch (error: unknown) {
+    handleApiError(error as ApiError, 'No schools found; please search again');
   }
 }

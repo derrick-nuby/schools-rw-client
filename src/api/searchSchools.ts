@@ -1,6 +1,7 @@
 import apiRequest from '../utils/apiRequest';
 import { SearchSchoolsParams } from '../types/SearchSchoolsParams';
 import { handleApiError } from '../utils/handleApiError';
+import { ApiError } from '../types/ApiError';
 
 export async function searchSchools(params: SearchSchoolsParams) {
   try {
@@ -41,7 +42,7 @@ export async function searchSchools(params: SearchSchoolsParams) {
     const { data } = await apiRequest.get(`/school/search?${queryString}`);
 
     return data;
-  } catch (error: any) {
-    handleApiError(error, 'No schools found; please search again.');
+  } catch (error: unknown) {
+    handleApiError(error as ApiError, 'No schools found; please search again.');
   }
 }

@@ -1,5 +1,7 @@
+import { ApiError } from '../types/ApiError';
+
 export function handleApiError(
-  error: any,
+  error: ApiError,
   notFoundMsg = 'Resource not found.',
 ): never {
   console.error(error);
